@@ -3,7 +3,7 @@
 
 blaha
 
-<<<<<<< HEAD
+HEAD
 asdasdasd
 
 asdasdasd
