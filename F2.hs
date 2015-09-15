@@ -27,9 +27,8 @@ checkDNA[h:t]
 seqName :: MolSeq -> String
 seqName m = m sekvensnamn
 
-
 seqSequence :: MolSeq -> String
 seqName m = m sekvens
 
-seqLength
-seqLength m = 
+seqLength :: Molseq -> Typ
+seqLength m = m typ
