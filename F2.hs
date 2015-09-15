@@ -10,10 +10,19 @@ data Typ = PROTEIN | DNA deriving(Show)
 
 
 
+dna =['A','C','G','T']
 
-String->String->Bool
-| if dna = MolSeq DNA a b
-| otherwise = MolSeq PROTEIN a b
+string2seq:: String->String->MolSeq
+string2seq namn sekvens
+	| checkDNA sekvens = MolSeq namn sekvens DNA
+	| otherwise = MolSeq namn sekvens PROTEIN
+
+checkDNA:: String -> Bool
+checkDNA[h:t]
+	| [] = True
+	| elem h dna =  checkDNA(t)
+ 	| otherwise = False
+
 
 
 
