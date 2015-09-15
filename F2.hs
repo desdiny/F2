@@ -18,7 +18,7 @@ string2seq namn sekvens
 checkDNA:: String -> Bool
 checkDNA[h:t]
 	| [] = True
-	| elem h dna =  checkDNA(t)
+	| elem h dna = checkDNA(t)
  	| otherwise = False
 
 
@@ -30,5 +30,5 @@ seqName m = sekvensnamn m
 seqSequence :: MolSeq -> String
 seqSequence m = sekvens m
 
-seqLength :: Molseq -> Typ
+seqLength :: MolSeq -> Typ
 seqLength m = typ m
