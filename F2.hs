@@ -1,15 +1,4 @@
 --Git_test!!!!
 
 
-blaha
-
-HEAD
-asdasdasd
-
-asdasdasd
-asdasdasddas
-d
-das
-=======
-z zzz
->>>>>>> origin/master
+data MolSeq = DNA String String | PROTEIN String String
