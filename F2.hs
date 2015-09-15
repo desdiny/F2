@@ -25,10 +25,10 @@ checkDNA[h:t]
 
 
 seqName :: MolSeq -> String
-seqName m = m sekvensnamn
+seqName m = sekvensnamn m
 
 seqSequence :: MolSeq -> String
-seqName m = m sekvens
+seqName m = sekvens m
 
 seqLength :: Molseq -> Typ
-seqLength m = m typ
+seqLength m = typ m
