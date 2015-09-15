@@ -16,8 +16,8 @@ string2seq namn sekvens
 	| otherwise = MolSeq namn sekvens PROTEIN
 
 checkDNA:: String -> Bool
+checkDNA [] = True
 checkDNA(h:t)
-	| [] = True
 	| elem h dna = checkDNA(t)
  	| otherwise = False
 
