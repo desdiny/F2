@@ -12,14 +12,14 @@ dna =['A','C','G','T']
 
 string2seq:: String->String->MolSeq
 string2seq namn sekvens
-	| checkDNA sekvens = MolSeq namn sekvens DNA
-	| otherwise = MolSeq namn sekvens PROTEIN
+  | checkDNA sekvens = MolSeq namn sekvens DNA
+  | otherwise = MolSeq namn sekvens PROTEIN
 
 checkDNA:: String -> Bool
 checkDNA [] = True
 checkDNA(h:t)
-	| elem h dna = checkDNA(t)
- 	| otherwise = False
+  | elem h dna = checkDNA(t)
+  | otherwise = False
 
 
 
