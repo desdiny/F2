@@ -28,7 +28,7 @@ seqName :: MolSeq -> String
 seqName m = sekvensnamn m
 
 seqSequence :: MolSeq -> String
-seqName m = sekvens m
+seqSequence m = sekvens m
 
 seqLength :: Molseq -> Typ
 seqLength m = typ m
