@@ -49,7 +49,6 @@ seqDistance n m
 
 --jukes-Cantor
 --da,b=−(3/4)ln(1−4α/3)
-<<<<<<< HEAD
 jukes-Cantor:: Double -> Double
 jukes-Cantor a
   | if a > 0.74 = 3.3
