@@ -59,10 +59,10 @@ jukes-Cantor a
 
 
 
-oskarsFunktion:: String -> String ->Int
-oskarsFunktion (a,taila) (b,tailb)
-	| [] = 0
-	| if a ==  b = 0 + oskarsFunktion(taila,tailb)
+seqDiff :: String -> String ->Int
+seqDiff [] [] = 0
+seqDiff (a,taila) (b,tailb)
+  | if a ==  b = 0 + seqDiff(taila,tailb)
 
 
 
