@@ -49,19 +49,10 @@ seqDistance n m
 
 --jukes-Cantor
 --da,b=−(3/4)ln(1−4α/3)
-jukes-Cantor:: Double -> Double
-jukes-Cantor a
-  | if a > 0.74 = 3.3
+jukesCantor:: Double -> Double
+jukesCantor a
+  | a > 0.74 = 3.3
   | otherwise = -(3/4)log(1-((4a)/3)
-
-
-
-
-
-
-
-
-
 
 seqDiff :: String -> String -> Int
 seqDiff a b
