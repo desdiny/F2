@@ -56,10 +56,7 @@ seqDistance n m
 seqDiff :: String -> String -> Int
 seqDiff [] [] = 0
 seqDiff a b
-  | head(a) == head(b) = 0 + seqDiff tail(a) tail(b)
-  | otherwise = 1 + seqDiff tail(a) tail(b)
-
-
-
+  | head a == head b = 0 + seqDiff (tail a) (tail b)
+  | otherwise = 1 + seqDiff (tail a) (tail b)
 
 
