@@ -51,7 +51,8 @@ seqDistance n m
 --da,b=−(3/4)ln(1−4α/3)
 jukes-Cantor:: Double -> Double
 jukes-Cantor a
-  | if a > 
+  | if a > 0.74 = 3.3
+  | otherwise = -(3/4)log(1-((4a)/3)
 
 --da,b=−(19/20)ln(1−20α/19)
 
