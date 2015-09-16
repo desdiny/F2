@@ -58,15 +58,10 @@ jukes-Cantor a
 
 
 
-
 seqDiff :: String -> String ->Int
 seqDiff [] [] = 0
 seqDiff (a,taila) (b,tailb)
   | if a ==  b = 0 + seqDiff(taila,tailb)
-
-
-
-
 
 
 
