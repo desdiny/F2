@@ -41,5 +41,5 @@ seqLength m = length (sekvens m)
 
 seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
-  | checkDNA n == checkDNA m = error "Can't compare DNA and PROTEIN"
+  | checkDNA (sekvens n) == checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
   | otherwise = 5.5
