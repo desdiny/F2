@@ -42,9 +42,8 @@ seqLength m = length (sekvens m)
 seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
   | checkDNA (sekvens n) /= checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
-  | checkDNA (sekvens n) == True  = jukesCantor(fromIntegral(seqDiff(sekvens n sekvens m)) / fromIntegral(seqLength  n)) -- kalla funktionen för dna här
-  | otherwise = poissonModellforProtein(fromIntegral(seqDiff(sekvens n sekvens m)) / fromIntegral(seqLength  n)) -- kalla funktionen för protein här
-
+  | checkDNA (seqSequence n) == True  = jukesCantor(fromIntegral(seqDiff(seqSequence n) (seqSequence m)) / fromIntegral(seqLength n)) -- kalla funktionen för dna här
+  | otherwise = poissonModellforProtein(fromIntegral(seqDiff(seqSequence n) (seqSequence m)) / fromIntegral(seqLength n)) -- kalla funktionen för protein här
 
 
 
