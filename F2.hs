@@ -42,16 +42,16 @@ seqLength m = length (sekvens m)
 seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
   | checkDNA (sekvens n) /= checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
-  | checkDNA (sekvens n) == True  = 1.0 -- kalla funktionen för dna här
+  | checkDNA (sekvens n) == True  = jukesCantor(seqDiff(sekvens n sekvens m) / seqLength sekvens n) -- kalla funktionen för dna här
   | otherwise = 2.0 -- kalla funktionen för protein här
 
 
 
 
---jukesCantor:: Double -> Double
---jukesCantor a
- -- | a > 0.74 = 3.3
- -- | otherwise = -(3/4)log(1-((4a)/3)
+jukesCantor:: Double -> Double
+jukesCantor a
+  | a > 0.74 = 3.3
+  | otherwise = -(3/4)*log(1-((4*a)/3))
 
 seqDiff :: String -> String -> Int
 seqDiff [] [] = 0
