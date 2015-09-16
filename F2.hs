@@ -43,3 +43,32 @@ seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
   | checkDNA (sekvens n) /= checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
   | otherwise = 5.5
+
+
+
+--jukes-Cantor
+--da,b=−(3/4)ln(1−4α/3)
+jukes-Cantor:: Double -> Double
+jukes-Cantor a
+  | if a > 
+
+--da,b=−(19/20)ln(1−20α/19)
+
+
+
+
+
+oskarsFunktion:: String -> String ->Int
+oskarsFunktion (a,taila) (b,tailb)
+	| [] = 0
+	| if a ==  b = 0 + oskarsFunktion(taila,tailb)
+
+
+
+
+
+
+
+
+
+
