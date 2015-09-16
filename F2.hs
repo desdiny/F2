@@ -48,15 +48,16 @@ seqDistance n m
 
 
 
-jukesCantor:: Double -> Double
-jukesCantor a
-  | a > 0.74 = 3.3
-  | otherwise = -(3/4)log(1-((4a)/3)
+--jukesCantor:: Double -> Double
+--jukesCantor a
+ -- | a > 0.74 = 3.3
+ -- | otherwise = -(3/4)log(1-((4a)/3)
 
 seqDiff :: String -> String -> Int
+seqDiff [] [] = 0
 seqDiff a b
-  | (head(a) == head(b)) = 0 + seqDiff(tail(a), tail(b)
-  | otherwise = 1 + seqDiff(tail(a), tail(b)
+  | (head(a) == head(b)) = 0 + seqDiff tail(a) tail(b)
+  | otherwise = 1 + seqDiff tail(a) tail(b)
 
 
 
