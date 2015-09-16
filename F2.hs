@@ -42,8 +42,8 @@ seqLength m = length (sekvens m)
 seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
   | checkDNA (sekvens n) /= checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
-<<<<<<< Updated upstream
-  | otherwise = 5.5
+  | checkDNA (sekvens n) == True  = 1.0 -- kalla funktionen för dna här
+  | otherwise = 2.0 -- kalla funktionen för protein här
 
 
 
@@ -68,11 +68,6 @@ oskarsFunktion (a,taila) (b,tailb)
 
 
 
-
-=======
-  | checkDNA (sekvens n) == True  = 1.0 -- kalla funktionen för dna här
-  | otherwise = 2.0 -- kalla funktionen för protein här
->>>>>>> Stashed changes
 
 
 
