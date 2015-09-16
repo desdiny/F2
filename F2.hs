@@ -47,8 +47,7 @@ seqDistance n m
 
 
 
---jukes-Cantor
---da,b=−(3/4)ln(1−4α/3)
+
 jukesCantor:: Double -> Double
 jukesCantor a
   | a > 0.74 = 3.3
@@ -56,7 +55,7 @@ jukesCantor a
 
 seqDiff :: String -> String -> Int
 seqDiff a b
-  | head(a) == head(b) = 0 + seqDiff(tail(a), tail(b)
+  | (head(a) == head(b)) = 0 + seqDiff(tail(a), tail(b)
   | otherwise = 1 + seqDiff(tail(a), tail(b)
 
 
