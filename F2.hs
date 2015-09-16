@@ -49,21 +49,25 @@ seqDistance n m
 
 --jukes-Cantor
 --da,b=−(3/4)ln(1−4α/3)
+<<<<<<< HEAD
 jukes-Cantor:: Double -> Double
 jukes-Cantor a
   | if a > 0.74 = 3.3
   | otherwise = -(3/4)log(1-((4a)/3)
 
---da,b=−(19/20)ln(1−20α/19)
 
 
 
 
-seqDiff :: String -> String ->Int
-seqDiff [] [] = 0
-seqDiff (a,taila) (b,tailb)
-  | if a ==  b = 0 + seqDiff(taila,tailb)
 
+
+
+
+
+seqDiff :: String -> String -> Int
+seqDiff a b
+  | head(a) == head(b) = 0 + seqDiff(tail(a), tail(b)
+  | otherwise = 1 + seqDiff(tail(a), tail(b)
 
 
 
