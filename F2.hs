@@ -1,3 +1,6 @@
+-- Oskar Casselryd
+-- Trolle Geuna
+
 module F2 where
 
 data Typ = PROTEIN | DNA deriving(Show)
@@ -36,4 +39,5 @@ seqLength m = length (sekvens m)
 
 
 
---seqDistance :: MolSeq -> MolSeq -> Double
+seqDistance :: MolSeq -> MolSeq -> Double
+  | seqDistance m
