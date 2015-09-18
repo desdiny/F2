@@ -67,8 +67,7 @@ seqDiff a b
 
 -- UPPGIFT 3
 
-data Profile = { m :: Matrix, typ :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
-
+data Profile = Profile { m :: Matrix, typ :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 
