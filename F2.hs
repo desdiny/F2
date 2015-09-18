@@ -3,9 +3,6 @@
 
 module F2 where
 
-import Data.Matrix
-
-
 data Typ = PROTEIN | DNA deriving(Show)
 
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
