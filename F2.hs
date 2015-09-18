@@ -3,6 +3,9 @@
 
 module F2 where
 
+import Data.Matrix
+
+
 data Typ = PROTEIN | DNA deriving(Show)
 
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
@@ -67,7 +70,7 @@ seqDiff a b
 
 -- UPPGIFT 3
 
-data Profile = Profile { m :: Matrix, typ :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
+data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 
