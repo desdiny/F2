@@ -5,11 +5,11 @@ module F2 where
 
 data Typ = PROTEIN | DNA deriving(Show)
 
-data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ}deriving(Show)
+data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
 
 
 
-
+-- UPPGIFT 2
 
 dna =['A','C','G','T']
 
@@ -26,7 +26,6 @@ checkDNA(h:t)
 
 
 
-
 seqName :: MolSeq -> String
 seqName m = sekvensnamn m
 
@@ -35,7 +34,6 @@ seqSequence m = sekvens m
 
 seqLength :: MolSeq -> Int
 seqLength m = length (sekvens m)
-
 
 
 
@@ -64,6 +62,12 @@ seqDiff [] [] = 0
 seqDiff a b
   | head a == head b = 0 + seqDiff (tail a) (tail b)
   | otherwise = 1 + seqDiff (tail a) (tail b)
+
+
+
+-- UPPGIFT 3
+
+data Profile = { m :: Matrix, typ :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 
