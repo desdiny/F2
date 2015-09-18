@@ -71,3 +71,26 @@ data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :
 
 
 
+molseqs2profile:: String -> [MolSeq] -> Profile
+
+
+
+nucleotides = "ACGT"
+aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
+
+makeProfileMatrix :: [MolSeq] -> ???
+makeProfileMatrix [] = error "Empty sequence list"
+makeProfileMatrix sl = res
+  where 
+    t = seqType (head sl)
+    defaults = 
+      if (t == DNA) then
+        zip nucleotides (replicate (length nucleotides) 0) -- Rad (i)
+      else 
+        zip aminoacids (replicate (length aminoacids) 0)   -- Rad (ii)
+    strs = map seqSequence sl                              -- Rad (iii)
+    tmp1 = map (map (\x -> ((head x), (length x))) . group . sort)
+               (transpose strs)                            -- Rad (iv)
+    equalFst a b = (fst a) == (fst b)
+    res = map sort (map (\l -> unionBy equalFst l defaults) tmp1)
+
