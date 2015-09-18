@@ -66,19 +66,28 @@ seqDiff a b
 
 
 -- UPPGIFT 3
-
+-- ToDO: Fixa dataprofilen
+type Matrix = [[Int]]
 data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
+--TODO: se kommentarerna i funktionen
+-- Är våran Matrix fel???
+-- Kanske finns ett snyggare/bättre sätt
 
 molseqs2profile:: String -> [MolSeq] -> Profile
-
+molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
+  where
+  	Matrix = makeProfileMatrix b
+ -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
+ --		anal (går det att använda length bara enkelt?)
+ --		namn 
 
 
 nucleotides = "ACGT"
 aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
 
-makeProfileMatrix :: [MolSeq] -> ???
+makeProfileMatrix :: [MolSeq] -> Matrix
 makeProfileMatrix [] = error "Empty sequence list"
 makeProfileMatrix sl = res
   where 
@@ -93,4 +102,23 @@ makeProfileMatrix sl = res
                (transpose strs)                            -- Rad (iv)
     equalFst a b = (fst a) == (fst b)
     res = map sort (map (\l -> unionBy equalFst l defaults) tmp1)
+
+
+
+
+
+
+profileName :: Profile -> String
+profileName n = namn n
+
+
+-- profileFrequency :: Profile -> Int -> Char -> Double
+
+
+
+
+-- profileDistance :: Profile -> Profile -> Double
+
+
+
 
