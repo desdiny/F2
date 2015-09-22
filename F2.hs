@@ -102,10 +102,10 @@ makeProfileMatrix sl = res
     t = seqType (head sl)
     defaults = 
       if (t == DNA) then
-      	-- skapar en lista utav tupler [(A,0),(B,2),.....]
+        -- skapar en lista utav tupler [(A,0),(B,2),.....]
         zip nucleotides (replicate (length nucleotides) 0) -- Rad (i)
       else 
-      	-- samma som rad i fast med aminosyror
+        -- samma som rad i fast med aminosyror
         zip aminoacids (replicate (length aminoacids) 0)   -- Rad (ii)
     --
     strs = map seqSequence sl                              -- Rad (iii)
@@ -143,32 +143,50 @@ helpprofileFrequency (huvud: svans) tecken
 
 -- Plocka ut matriserna från profilerna och kalla hjälpfunktion.
 profileDistance :: Profile -> Profile -> Double
-profileDistance (Profile m1 _ _ _) (Profile m2 _ _ _) = helpDistance m1 m2
+profileDistance (Profile m1 _ antalSekvenser _) (Profile m2 _ _ _) = fromIntegral number / fromIntegral antalSekvenser
+  where
+    number = helpDistance m1 m2
 
 -- Kör igenom listorna i matrisen. Alltså de olika teckenpositionerna.
-helpDistance :: Matris -> Matris -> Double
+helpDistance :: Matris -> Matris -> Int
 helpDistance (h1:t1) (h2:t2)
   | h1 == [] = 0
   | otherwise = abs (helpDistance2 h1 h2) + (helpDistance t1 t2) -- Kalla hd2
 
 -- Jämför varje tuple som utgör matrisen. Dvs hur många av varje tecken som finns på positionen.
-helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Double
+helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Int
 helpDistance2 (h1:t1) (h2:t2) = abs((snd h1) - (snd h2)) + helpDistance2 t1 t2
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Evol a where
-	distance :: a -> a -> Double
-	name :: a -> String 
-	distanceMatrix :: [a] -> [(String, String, Double)]
-	distanceMatrix a = helpDistanceMatrix a 0 ++ distanceMatrix (tail a)
-	helpDistanceMatrix :: [a] -> Int ->[(String, String, Double)]
-	helpDistanceMatrix a nummer
-	  |nummer < length a = (name ett , name tva, distance ett tva) : helpDistanceMatrix a (nummer+ 1)
-	  |otherwise = []
-	  where
-	  	ett = head a
-	  	tva = a !! nummer
+  distance :: a -> a -> Double
+  name :: a -> String 
+  distanceMatrix :: [a] -> [(String, String, Double)]
+  distanceMatrix a = helpDistanceMatrix a 0 ++ distanceMatrix (tail a)
+  helpDistanceMatrix :: [a] -> Int ->[(String, String, Double)]
+  helpDistanceMatrix a nummer
+    |nummer < length a = (name ett , name tva, distance ett tva) : helpDistanceMatrix a (nummer+ 1)
+    |otherwise = []
+    where
+      ett = head a
+      tva = a !! nummer
 
 
     
@@ -178,12 +196,12 @@ class Evol a where
 
 
 instance Evol MolSeq where
-	name = seqName
-	distance = seqDistance
+  name = seqName
+  distance = seqDistance
 
 instance Evol Profile where
-	name = profileName
-	distance = profileDistance
+  name = profileName
+  distance = profileDistance
 
 
 
