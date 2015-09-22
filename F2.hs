@@ -144,29 +144,17 @@ helpprofileFrequency (huvud: svans) tecken
 
 -- Plocka ut matriserna från profilerna och kalla hjälpfunktion.
 profileDistance :: Profile -> Profile -> Double
-profileDistance (Profile m1 _ antalSekvenser _) (Profile m2 _ _ _) = fromIntegral number / fromIntegral antalSekvenser
-  where
-    number = helpDistance m1 m2
+profileDistance (Profile m1 _ antalSekvenser1 _) (Profile m2 _ antalSekvenser2 _) = (helpDistance m1 m2 antalSekvenser1 antalSekvenser2)
 
 -- Kör igenom listorna i matrisen. Alltså de olika teckenpositionerna.
-helpDistance :: Matris -> Matris -> Int
-helpDistance [] [] = 0
-helpDistance (h1:t1) (h2:t2) = abs (helpDistance2 h1 h2) + (helpDistance t1 t2) -- Kalla hd2
+helpDistance :: Matris -> Matris -> Int -> Int -> Double
+helpDistance [] [] _ _ = 0
+helpDistance (h1:t1) (h2:t2) antalSekvenser1 antalSekvenser2 = abs (helpDistance2 h1 h2 antalSekvenser1 antalSekvenser2) + (helpDistance t1 t2 antalSekvenser1 antalSekvenser2) -- Kalla hd2
 
 -- Jämför varje tuple som utgör matrisen. Dvs hur många av varje tecken som finns på positionen.
-helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Int
-helpDistance2 [] [] = 0
-helpDistance2 (h1:t1) (h2:t2) = abs((snd h1) - (snd h2)) + (helpDistance2 t1 t2)
-
-
-
-
-
-
-
-
-
-
+helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Int -> Int -> Double
+helpDistance2 [] [] _ _ = 0
+helpDistance2 (h1:t1) (h2:t2) antalSekvenser1 antalSekvenser2 = abs((fromIntegral (snd h1) / fromIntegral antalSekvenser1) - (fromIntegral (snd h2) / fromIntegral antalSekvenser2)) + (helpDistance2 t1 t2 antalSekvenser1 antalSekvenser2)
 
 
 
