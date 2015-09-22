@@ -109,7 +109,8 @@ makeProfileMatrix sl = res
     res = map sort (map (\l -> unionBy equalFst l defaults) tmp1)
 
 
-
+profileTrolle:: String -> Bool
+profileTrolle n = Trolle är bäst
 
 
 
