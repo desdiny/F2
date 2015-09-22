@@ -2,8 +2,11 @@
 -- Trolle Geuna
 
 module F2 where
+<<<<<<< Updated upstream
 import Data.List
 
+=======
+>>>>>>> Stashed changes
 
 data Typ = PROTEIN | DNA deriving(Show)
 
@@ -36,9 +39,6 @@ seqSequence m = sekvens m
 
 seqLength :: MolSeq -> Int
 seqLength m = length (sekvens m)
-
-seqType :: MolSeq -> Typ
-seqType m = typ m
 
 
 
@@ -76,15 +76,16 @@ type Matrix = [[(Int)]]
 data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
+
 --TODO: se kommentarerna i funktionen
 -- Är våran Matrix fel???
 -- Kanske finns ett snyggare/bättre sätt
 
 molseqs2profile:: String -> [MolSeq] -> Profile
-molseqs2profile a b = Profile m mTyp antalSekvenser namn
+molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
   where
   	matrix = makeProfileMatrix b
-  	mTyp = seqType (head b)
+  	mTyp = 
   	antalSekvenser = length b
   	namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
@@ -95,9 +96,6 @@ molseqs2profile a b = Profile m mTyp antalSekvenser namn
 nucleotides = "ACGT"
 aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
 
-
-
--- denna måste vi kommentera så vi förstår den
 makeProfileMatrix :: [MolSeq] -> Matrix
 makeProfileMatrix [] = error "Empty sequence list"
 makeProfileMatrix sl = res
