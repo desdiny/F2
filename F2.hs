@@ -134,8 +134,30 @@ helpprofileFrequency (huvud: svans) tecken
 
 
 
--- profileDistance :: Profile -> Profile -> Double
+ profileDistance :: Profile -> Profile -> Double
 
+
+
+
+class Evol a where
+	distance :: a -> a -> Double
+	name :: a -> String 
+	distanceMatrix :: [a] -> [(String, String, Double)]
+	
+
+    
+
+
+
+
+
+instance Evol MolSeq where
+	name = seqName
+	distance = seqDistance
+
+instance Evol Profile where
+	name = profileName
+	distance = profileDistance
 
 
 
