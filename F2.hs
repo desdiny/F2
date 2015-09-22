@@ -3,6 +3,8 @@
 
 module F2 where
 import Data.List
+
+
 data Typ = PROTEIN | DNA deriving(Show)
 
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
@@ -70,7 +72,7 @@ seqDiff a b
 
 -- UPPGIFT 3
 -- ToDO: Fixa dataprofilen
-type Matrix = [[Int]]
+type Matrix = [[(Int)]]
 data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
