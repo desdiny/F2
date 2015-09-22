@@ -123,9 +123,14 @@ profileName n = namn n
 -- Bör vi väll plocka ut en [(Char, Int)] på den position vi vill undersöka
 -- Sedan hämta ut det värde för rätt Char
 profileFrequency :: Profile -> Int -> Char -> Double
-profileFrequency (m antalSekvenser) position tecken = fromIntegral number / fromIntegral antalSekvenser
+profileFrequency (Profile m _ antalSekvenser _) position tecken = fromIntegral number / fromIntegral antalSekvenser
   where
-  	number = 
+    number = helpprofileFrequency (m !! position) tecken
+
+helpprofileFrequency :: [(Char, Int)] -> Char -> Int
+helpprofileFrequency (huvud: svans) tecken
+  | tecken == fst huvud = snd huvud
+  | otherwise = helpprofileFrequency svans tecken
 
 
 
