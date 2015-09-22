@@ -4,7 +4,7 @@
 module F2 where
 import Data.List
 
-data Typ = PROTEIN | DNA deriving(Show)
+data Typ = PROTEIN | DNA deriving(Show,Eq)
 
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
 
@@ -83,7 +83,7 @@ data Profile = Profile { m :: Matris, mTyp :: Typ, antalSekvenser :: Int, namn :
 molseqs2profile:: String -> [MolSeq] -> Profile
 molseqs2profile a b = Profile m mTyp antalSekvenser namn
   where
-  	matrix = makeProfileMatrix b
+  	m = makeProfileMatrix b
   	mTyp = seqType (head b)
   	antalSekvenser = length b
   	namn = a
