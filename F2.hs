@@ -130,6 +130,7 @@ profileFrequency (Profile m _ antalSekvenser _) position tecken = fromIntegral n
   where
     number = helpprofileFrequency (m !! position) tecken
 
+-- Tecknet _MÅSTE_ finnas i sekvensen för att denna funktion ska fungera.
 helpprofileFrequency :: [(Char, Int)] -> Char -> Int
 helpprofileFrequency (huvud: svans) tecken
   | tecken == fst huvud = snd huvud
@@ -137,8 +138,22 @@ helpprofileFrequency (huvud: svans) tecken
 
 
 
- profileDistance :: Profile -> Profile -> Double
 
+-- ANVÄND PROFILEFREQUENCY! Se till att det är rätt matriser som jämförs! Det ska vara doubles, inte int!
+
+-- Plocka ut matriserna från profilerna och kalla hjälpfunktion.
+profileDistance :: Profile -> Profile -> Double
+profileDistance (Profile m1 _ _ _) (Profile m2 _ _ _) = helpDistance m1 m2
+
+-- Kör igenom listorna i matrisen. Alltså de olika teckenpositionerna.
+helpDistance :: Matris -> Matris -> Double
+helpDistance (h1:t1) (h2:t2)
+  | h1 == [] = 0
+  | otherwise = abs (helpDistance2 h1 h2) + (helpDistance t1 t2) -- Kalla hd2
+
+-- Jämför varje tuple som utgör matrisen. Dvs hur många av varje tecken som finns på positionen.
+helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Double
+helpDistance2 (h1:t1) (h2:t2) = abs((snd h1) - (snd h2)) + helpDistance2 t1 t2
 
 
 
