@@ -2,11 +2,7 @@
 -- Trolle Geuna
 
 module F2 where
-<<<<<<< Updated upstream
 import Data.List
-
-=======
->>>>>>> Stashed changes
 
 data Typ = PROTEIN | DNA deriving(Show)
 
