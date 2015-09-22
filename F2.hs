@@ -146,7 +146,14 @@ class Evol a where
 	distance :: a -> a -> Double
 	name :: a -> String 
 	distanceMatrix :: [a] -> [(String, String, Double)]
-	distanceMatrix a = [(name a1,name a2, distance a1 a2) | a1 <- a, a2 <- a]
+	distanceMatrix a = helpDistanceMatrix a 0 ++ distanceMatrix (tail a)
+	helpDistanceMatrix :: [a] -> Int ->[(String, String, Double)]
+	helpDistanceMatrix a nummer
+	  |nummer < length a = (name ett , name tva, distance ett tva) : helpDistanceMatrix a (nummer+ 1)
+	  |otherwise = []
+	  where
+	  	ett = head a
+	  	tva = a !! nummer
 
 
     
