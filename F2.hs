@@ -2,7 +2,7 @@
 -- Trolle Geuna
 
 module F2 where
-
+import Data.List
 data Typ = PROTEIN | DNA deriving(Show)
 
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
