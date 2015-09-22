@@ -35,6 +35,9 @@ seqSequence m = sekvens m
 seqLength :: MolSeq -> Int
 seqLength m = length (sekvens m)
 
+seqTyp :: MolSeq -> Typ
+seqTyp m = typ m
+
 
 
 seqDistance :: MolSeq -> MolSeq -> Double
@@ -79,7 +82,7 @@ molseqs2profile:: String -> [MolSeq] -> Profile
 molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
   where
   	matrix = makeProfileMatrix b
-  	mTyp = 
+  	mTyp = seqTyp
   	antalSekvenser = length b
   	namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
@@ -90,7 +93,10 @@ molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
 nucleotides = "ACGT"
 aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
 
-makeProfileMatrix :: [MolSeq] -> Matrix
+
+
+-- denna måste vi kommentera så vi förstår den
+makeProfileMatrix :: [MolSeq] -> matrix
 makeProfileMatrix [] = error "Empty sequence list"
 makeProfileMatrix sl = res
   where 
