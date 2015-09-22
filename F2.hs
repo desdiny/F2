@@ -35,8 +35,8 @@ seqSequence m = sekvens m
 seqLength :: MolSeq -> Int
 seqLength m = length (sekvens m)
 
-seqTyp :: MolSeq -> Typ
-seqTyp m = typ m
+seqType :: MolSeq -> Typ
+seqType m = typ m
 
 
 
@@ -70,8 +70,8 @@ seqDiff a b
 
 -- UPPGIFT 3
 -- ToDO: Fixa dataprofilen
-type matrix = [[Int]]
-data Profile = Profile { m :: matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
+type Matrix = [[Int]]
+data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 --TODO: se kommentarerna i funktionen
@@ -79,10 +79,10 @@ data Profile = Profile { m :: matrix, mTyp :: Typ, antalSekvenser :: Int, namn :
 -- Kanske finns ett snyggare/bättre sätt
 
 molseqs2profile:: String -> [MolSeq] -> Profile
-molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
+molseqs2profile a b = Profile m mTyp antalSekvenser namn
   where
   	matrix = makeProfileMatrix b
-  	mTyp = seqTyp
+  	mTyp = seqType (head b)
   	antalSekvenser = length b
   	namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
@@ -96,7 +96,7 @@ aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
 
 
 -- denna måste vi kommentera så vi förstår den
-makeProfileMatrix :: [MolSeq] -> matrix
+makeProfileMatrix :: [MolSeq] -> Matrix
 makeProfileMatrix [] = error "Empty sequence list"
 makeProfileMatrix sl = res
   where 
