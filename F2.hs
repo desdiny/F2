@@ -83,10 +83,10 @@ data Profile = Profile { m :: Matris, mTyp :: Typ, antalSekvenser :: Int, namn :
 molseqs2profile:: String -> [MolSeq] -> Profile
 molseqs2profile a b = Profile m mTyp antalSekvenser namn
   where
-  	m = makeProfileMatrix b
-  	mTyp = seqType (head b)
-  	antalSekvenser = length b
-  	namn = a
+    m = makeProfileMatrix b
+    mTyp = seqType (head b)
+    antalSekvenser = length b
+    namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
  --		anal (går det att använda length bara enkelt?)
  --		namn 
