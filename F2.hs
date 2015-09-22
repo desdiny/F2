@@ -67,8 +67,8 @@ seqDiff a b
 
 -- UPPGIFT 3
 -- ToDO: Fixa dataprofilen
-type Matrix = [[Int]]
-data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
+type matrix = [[Int]]
+data Profile = Profile { m :: matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 --TODO: se kommentarerna i funktionen
@@ -78,7 +78,10 @@ data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :
 molseqs2profile:: String -> [MolSeq] -> Profile
 molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
   where
-  	Matrix = makeProfileMatrix b
+  	matrix = makeProfileMatrix b
+  	mTyp = 
+  	antalSekvenser = length b
+  	namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
  --		anal (går det att använda length bara enkelt?)
  --		namn 
