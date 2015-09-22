@@ -1,5 +1,6 @@
 -- Oskar Casselryd
 -- Trolle Geuna
+-- Senast ändrad 2015-09-22
 
 module F2 where
 import Data.List
@@ -149,13 +150,13 @@ profileDistance (Profile m1 _ antalSekvenser _) (Profile m2 _ _ _) = fromIntegra
 
 -- Kör igenom listorna i matrisen. Alltså de olika teckenpositionerna.
 helpDistance :: Matris -> Matris -> Int
-helpDistance (h1:t1) (h2:t2)
-  | h1 == [] = 0
-  | otherwise = abs (helpDistance2 h1 h2) + (helpDistance t1 t2) -- Kalla hd2
+helpDistance [] [] = 0
+helpDistance (h1:t1) (h2:t2) = abs (helpDistance2 h1 h2) + (helpDistance t1 t2) -- Kalla hd2
 
 -- Jämför varje tuple som utgör matrisen. Dvs hur många av varje tecken som finns på positionen.
 helpDistance2 :: [(Char, Int)] -> [(Char, Int)] -> Int
-helpDistance2 (h1:t1) (h2:t2) = abs((snd h1) - (snd h2)) + helpDistance2 t1 t2
+helpDistance2 [] [] = 0
+helpDistance2 (h1:t1) (h2:t2) = abs((snd h1) - (snd h2)) + (helpDistance2 t1 t2)
 
 
 
