@@ -102,9 +102,12 @@ makeProfileMatrix sl = res
     t = seqType (head sl)
     defaults = 
       if (t == DNA) then
+      	-- skapar en lista utav tupler [(A,0),(B,2),.....]
         zip nucleotides (replicate (length nucleotides) 0) -- Rad (i)
       else 
+      	-- samma som rad i fast med aminosyror
         zip aminoacids (replicate (length aminoacids) 0)   -- Rad (ii)
+    --
     strs = map seqSequence sl                              -- Rad (iii)
     tmp1 = map (map (\x -> ((head x), (length x))) . group . sort)
                (transpose strs)                            -- Rad (iv)
@@ -143,7 +146,8 @@ class Evol a where
 	distance :: a -> a -> Double
 	name :: a -> String 
 	distanceMatrix :: [a] -> [(String, String, Double)]
-	
+	distanceMatrix a = [(name a1,name a2, distance a1 a2) | a1 <- a, a2 <- a]
+
 
     
 
