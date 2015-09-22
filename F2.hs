@@ -118,8 +118,14 @@ profileName :: Profile -> String
 profileName n = namn n
 
 
--- profileFrequency :: Profile -> Int -> Char -> Double
 
+-- Eftersom våran matris är [[(Char, Int)]]
+-- Bör vi väll plocka ut en [(Char, Int)] på den position vi vill undersöka
+-- Sedan hämta ut det värde för rätt Char
+profileFrequency :: Profile -> Int -> Char -> Double
+profileFrequency (m antalSekvenser) position tecken = fromIntegral number / fromIntegral antalSekvenser
+  where
+  	number = 
 
 
 
