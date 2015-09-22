@@ -36,6 +36,9 @@ seqSequence m = sekvens m
 seqLength :: MolSeq -> Int
 seqLength m = length (sekvens m)
 
+seqType :: MolSeq -> Typ
+seqType m = typ m
+
 
 
 seqDistance :: MolSeq -> MolSeq -> Double
@@ -68,8 +71,8 @@ seqDiff a b
 
 -- UPPGIFT 3
 -- ToDO: Fixa dataprofilen
-type Matrix = [[(Int)]]
-data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
+type Matris = [[(Char, Int)]]
+data Profile = Profile { m :: Matris, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
 
@@ -78,10 +81,10 @@ data Profile = Profile { m :: Matrix, mTyp :: Typ, antalSekvenser :: Int, namn :
 -- Kanske finns ett snyggare/bättre sätt
 
 molseqs2profile:: String -> [MolSeq] -> Profile
-molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
+molseqs2profile a b = Profile m mTyp antalSekvenser namn
   where
   	matrix = makeProfileMatrix b
-  	mTyp = 
+  	mTyp = seqType (head b)
   	antalSekvenser = length b
   	namn = a
  -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
@@ -92,7 +95,7 @@ molseqs2profile a b = Profile Matrix, mTyp, antalSekvenser,namn
 nucleotides = "ACGT"
 aminoacids = sort "ARNDCEQGHILKMFPSTWYVX"
 
-makeProfileMatrix :: [MolSeq] -> Matrix
+makeProfileMatrix :: [MolSeq] -> Matris
 makeProfileMatrix [] = error "Empty sequence list"
 makeProfileMatrix sl = res
   where 
@@ -108,9 +111,6 @@ makeProfileMatrix sl = res
     equalFst a b = (fst a) == (fst b)
     res = map sort (map (\l -> unionBy equalFst l defaults) tmp1)
 
-
-profileTrolle:: String -> Bool
-profileTrolle n = Trolle är bäst
 
 
 
