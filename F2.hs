@@ -168,6 +168,7 @@ class Evol a where
   distance :: a -> a -> Double
   name :: a -> String 
   distanceMatrix :: [a] -> [(String, String, Double)]
+  distanceMatrix[] = []
   distanceMatrix a = helpDistanceMatrix a 0 ++ distanceMatrix (tail a)
   helpDistanceMatrix :: [a] -> Int ->[(String, String, Double)]
   helpDistanceMatrix a nummer
