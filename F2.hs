@@ -5,8 +5,10 @@
 module F2 where
 import Data.List
 
+-- skapar en data typ av typen typ som antingen kan vara protein eller dna
 data Typ = PROTEIN | DNA deriving(Show,Eq)
 
+-- skapar en molseq
 data MolSeq = MolSeq { sekvensnamn :: String, sekvens :: String, typ :: Typ }deriving(Show)
 
 
@@ -44,12 +46,15 @@ seqType m = typ m
 
 seqDistance :: MolSeq -> MolSeq -> Double
 seqDistance n m
+-- kollar om båda molseq är utav samma typ
   | checkDNA (sekvens n) /= checkDNA (sekvens m) = error "Can't compare DNA and PROTEIN"
+-- OM checkDNA kör seqdiff på sekvensen dela sedan detta med längden på sekvensen för att sedan köra junkeskantor på det
   | checkDNA (seqSequence n) == True  = jukesCantor(fromIntegral(seqDiff(seqSequence n) (seqSequence m)) / fromIntegral(seqLength n)) -- kalla funktionen för dna här
+-- OM det är ett protein kör seqdiff på sekvensen dela sedan detta med längden på sekvensen för att sedan köra poisonmodellen på det
   | otherwise = poissonModellforProtein(fromIntegral(seqDiff(seqSequence n) (seqSequence m)) / fromIntegral(seqLength n)) -- kalla funktionen för protein här
 
 
-
+-- För dna
 jukesCantor:: Double -> Double
 jukesCantor a
   | a > 0.74 = 3.3
@@ -61,7 +66,8 @@ poissonModellforProtein a
   | a <= 0.94 = -(19/20)*log(1-((20*a)/19))
   | otherwise = 3.7
 
-
+-- Jämför varje head i två strängar med varandra.
+-- När dessa är olika så adderas et till int
 seqDiff :: String -> String -> Int
 seqDiff [] [] = 0
 seqDiff a b
@@ -71,8 +77,9 @@ seqDiff a b
 
 
 -- UPPGIFT 3
--- ToDO: Fixa dataprofilen
+-- en typ Matris som inehåller tupler med char, int
 type Matris = [[(Char, Int)]]
+-- Skapar en dataprofil som heter Profile
 data Profile = Profile { m :: Matris, mTyp :: Typ, antalSekvenser :: Int, namn :: String }deriving(Show)
 
 
@@ -81,6 +88,7 @@ data Profile = Profile { m :: Matris, mTyp :: Typ, antalSekvenser :: Int, namn :
 -- Är våran Matrix fel???
 -- Kanske finns ett snyggare/bättre sätt
 
+-- Gör en profil utav en lista utav molseqs och ett namn
 molseqs2profile:: String -> [MolSeq] -> Profile
 molseqs2profile a b = Profile m mTyp antalSekvenser namn
   where
@@ -88,9 +96,7 @@ molseqs2profile a b = Profile m mTyp antalSekvenser namn
     mTyp = seqType (head b)
     antalSekvenser = length b
     namn = a
- -- 	mTyp =  TODO: fixa en returntyp till molSeq typen
- --		anal (går det att använda length bara enkelt?)
- --		namn 
+
 
 
 nucleotides = "ACGT"
@@ -103,13 +109,15 @@ makeProfileMatrix sl = res
     t = seqType (head sl)
     defaults = 
       if (t == DNA) then
-        -- skapar en lista utav tupler [(A,0),(B,2),.....]
+        -- skapar en lista utav tupler [(A,0),(C,0),(G,0),...]
         zip nucleotides (replicate (length nucleotides) 0) -- Rad (i)
       else 
         -- samma som rad i fast med aminosyror
         zip aminoacids (replicate (length aminoacids) 0)   -- Rad (ii)
-    --
+    -- strs är en lista som innehåller alla sekvenser som matrisen skapas utav
     strs = map seqSequence sl                              -- Rad (iii)
+    -- transponera listan strs så att vi får en lista A där As första element
+    -- består utav första elementet ur varje sekvent. Och så vidare. Skapar en sorterad map och gruperar elementen så att alla C t.ex står brevid varandra
     tmp1 = map (map (\x -> ((head x), (length x))) . group . sort)
                (transpose strs)                            -- Rad (iv)
     equalFst a b = (fst a) == (fst b)
@@ -169,6 +177,7 @@ class Evol a where
   name :: a -> String 
   distanceMatrix :: [a] -> [(String, String, Double)]
   distanceMatrix[] = []
+  --kallar på helpDistanceMatrix och sedan på distanceMatrix med tail
   distanceMatrix a = helpDistanceMatrix a 0 ++ distanceMatrix (tail a)
   helpDistanceMatrix :: [a] -> Int ->[(String, String, Double)]
   helpDistanceMatrix a nummer
